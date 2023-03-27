@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @sleep %>
+
+<div>
+  <%= link_to "Edit this sleep", edit_sleep_path(@sleep) %> |
+  <%= link_to "Back to sleeps", sleeps_path %>
+
+  <%= button_to "Destroy this sleep", @sleep, method: :delete %>
+</div>
