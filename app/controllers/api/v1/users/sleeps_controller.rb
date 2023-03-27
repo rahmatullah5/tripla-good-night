@@ -9,7 +9,7 @@ module Api
 
         # GET /api/v1/users/1/sleeps.json or /api/v1/users/1/sleeps.json
         def index
-          render json: @user.sleeps.all, status: :ok
+          render json: @user.sleeps.order(sleep_duration: :desc), status: :ok
         end
 
         # GET /api/v1/users/1/sleeps/2 or /api/v1/users/1/sleeps/2.json

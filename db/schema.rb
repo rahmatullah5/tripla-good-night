@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_327_053_214) do
+ActiveRecord::Schema[7.0].define(version: 20_230_327_223_023) do
   create_table 'followers', force: :cascade do |t|
     t.integer 'follower_id'
     t.integer 'followee_id'
@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 20_230_327_053_214) do
     t.datetime 'clock_out'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.integer 'sleep_duration', default: 0
     t.index ['user_id'], name: 'index_sleeps_on_user_id'
   end
 
