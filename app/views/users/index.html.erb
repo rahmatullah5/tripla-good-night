@@ -3,12 +3,17 @@
 <h1>Users</h1>
 
 <div id="users">
+  <table border="1">
+  <th>ID</th>
+  <th>Name</th>
+  <th>Created At</th>
+  <th>Updated At</th>
+  <th>Actions</th>
   <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
+    <tr id="<%= dom_id user %>">
+      <%= render user %>
+      <td><%= link_to "Show", user %></td>
+    </tr>
   <% end %>
+  </table>  
 </div>
-
-<%= link_to "New user", new_user_path %>

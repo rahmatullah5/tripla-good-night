@@ -1,10 +1,50 @@
-<p style="color: green"><%= notice %></p>
+<h1>User Detail</h1>
 
-<%= render @user %>
+<div id="users">
+  <table border="1">
+  <th>ID</th>
+  <th>Name</th>
+  <th>Created At</th>
+  <th>Updated At</th>
+  <tr id="<%= dom_id @user %>">
+    <%= render @user %>
+  <tr>
+  </table>  
+</div>
+
+<h1>Sleeps</h1>
+<div id="sleeps">
+  <table border="1">
+  <th>ID</th>
+  <th>Clock In</th>
+  <th>Clock Out</th>
+  <th>Sleep Time</th>
+  <th>Created At</th>
+  <th>Updated At</th>
+  <% @user.sleeps.each do |sleep| %>
+    <tr id="<%= dom_id sleep %>">
+      <%= render "users/sleep", sleep: sleep %>
+    </tr>
+  <% end %>
+  </table>  
+</div>
+
+<h1>Followers</h1>
+<div id="followers">
+  <table border="1">
+  <th>ID</th>
+  <th>Followers</th>
+  <th>Created At</th>
+  <th>Updated At</th>
+  <% @user.followees.each do |follower| %>
+    <tr id="<%= dom_id follower %>">
+      <%= render follower.follower %>
+    </tr>
+  <% end %>
+  </table>  
+</div>
+
 
 <div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
-
-  <%= button_to "Destroy this user", @user, method: :delete %>
 </div>
