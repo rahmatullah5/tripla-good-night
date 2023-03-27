@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root to: 'users#index'
   resources :users, only: %i[index show]
 
   namespace :api do
     namespace :v1 do
-      resources :users, only: %i[index create show update delete] do
+      resources :users, only: %i[index create show update destroy] do
         scope module: :users do
           resources :followers, only: %i[index create show update destroy]
           resources :sleeps, only: %i[index create show update destroy]

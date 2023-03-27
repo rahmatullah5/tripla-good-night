@@ -36,9 +36,28 @@
   <th>Followers</th>
   <th>Created At</th>
   <th>Updated At</th>
-  <% @user.followees.each do |follower| %>
+  <th>Actions</th>
+  <% @user.followers.each do |follower| %>
     <tr id="<%= dom_id follower %>">
       <%= render follower.follower %>
+      <td><%= link_to "Show", user_path(follower.follower) %></td>
+    </tr>
+  <% end %>
+  </table>  
+</div>
+
+<h1>Followees</h1>
+<div id="followees">
+  <table border="1">
+  <th>ID</th>
+  <th>Followees</th>
+  <th>Created At</th>
+  <th>Updated At</th>
+  <th>Actions</th>
+  <% @user.followees.each do |followee| %>
+    <tr id="<%= dom_id followee %>">
+      <%= render followee.followee %>
+      <td><%= link_to "Show", user_path(followee.followee) %></td>
     </tr>
   <% end %>
   </table>  

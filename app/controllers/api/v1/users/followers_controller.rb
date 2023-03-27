@@ -62,7 +62,7 @@ module Api
 
         # Only allow a list of trusted parameters through.
         def follower_params
-          params.permit(:followee_id)
+          params.permit(:follower_id)
         end
       end
     end
