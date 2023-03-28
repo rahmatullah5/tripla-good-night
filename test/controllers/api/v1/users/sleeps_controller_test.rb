@@ -16,6 +16,12 @@ module Api
           assert_response :success
         end
 
+        test 'should not get index with invalid params' do
+          get api_v1_user_sleeps_url(@user), params: { from_date: '', to_date: '', sort_by: '', sort_type: '' },
+                                             as: :json
+          assert_response :unprocessable_entity
+        end
+
         test 'should show sleep' do
           get api_v1_user_sleep_url(@user, @sleep), as: :json
           assert_response :success

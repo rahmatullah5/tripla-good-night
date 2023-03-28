@@ -9,7 +9,17 @@ module Api
 
         # GET /api/v1/users/1/sleeps.json or /api/v1/users/1/sleeps.json
         def index
-          render json: @user.sleeps.order(sleep_duration: :desc), status: :ok
+          form = Forms::Api::V1::Users::Sleeps::IndexForm.new(search_params)
+          if form.valid?
+            # Get the sleeps based on the validated params
+            sleeps = Sleep
+                     .where('clock_in BETWEEN ? AND ?', form.from_date, form.to_date)
+                     .order(Arel.sql("#{form.sort_by} #{form.sort_type}"))
+
+            render json: sleeps, status: :ok
+          else
+            render json: { errors: form.errors.full_messages }, status: :unprocessable_entity
+          end
         end
 
         # GET /api/v1/users/1/sleeps/2 or /api/v1/users/1/sleeps/2.json
@@ -63,6 +73,10 @@ module Api
         # Only allow a list of trusted parameters through.
         def sleep_params
           params.permit(:clock_in, :clock_out)
+        end
+
+        def search_params
+          params.permit(:sort_by, :sort_type, :from_date, :to_date)
         end
       end
     end

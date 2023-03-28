@@ -12,18 +12,30 @@
   </table>  
 </div>
 
-<h1>Sleeps</h1>
+<h1>Clock In/Clock Out Records</h1>
 <div id="sleeps">
   <table border="1">
   <th>ID</th>
   <th>Clock In</th>
   <th>Clock Out</th>
-  <th>Sleep Time</th>
   <th>Created At</th>
   <th>Updated At</th>
   <% @user.sleeps.each do |sleep| %>
     <tr id="<%= dom_id sleep %>">
       <%= render "users/sleep", sleep: sleep %>
+    </tr>
+  <% end %>
+  </table>  
+</div>
+
+<h1>Sleep Duration Records</h1>
+<div id="sleeps">
+  <table border="1">
+  <th>ID</th>
+  <th>Sleep Duration</th>
+  <% @user.sleep_durations.each do |sleep| %>
+    <tr id="<%= dom_id sleep %>">
+      <%= render "users/sleep_duration", sleep: sleep %>
     </tr>
   <% end %>
   </table>  

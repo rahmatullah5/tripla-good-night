@@ -21,6 +21,8 @@ class UserTest < ActiveSupport::TestCase
       @user.sleeps.create(clock_in: Time.now, clock_out: Time.now + 8.hours)
       @user.sleeps.create(clock_in: Time.now + 1.day, clock_out: Time.now + 1.day + 8.hours)
     end
+
+    assert_equal @user.sleeps.count, @user.sleep_durations.count
   end
 
   test 'should have many followers' do
