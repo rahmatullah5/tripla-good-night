@@ -14,7 +14,7 @@ module Api
             # Get the sleeps based on the validated params
             sleeps = Sleep
                      .where('clock_in BETWEEN ? AND ?', form.from_date, form.to_date)
-                     .order(Arel.sql("#{form.sort_by} #{form.sort_type}"))
+                     .order({ form.sort_by => form.sort_type })
 
             render json: sleeps, status: :ok
           else
