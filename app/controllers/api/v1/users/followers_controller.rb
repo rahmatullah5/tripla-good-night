@@ -33,15 +33,6 @@ module Api
           end
         end
 
-        # PATCH/PUT /api/v1/users/1/followers/2 or /api/v1/users/1/followers/2.json
-        def update
-          if @follower.update(follower_params)
-            render json: @follower, status: :created
-          else
-            render json: @follower.errors, status: :unprocessable_entity
-          end
-        end
-
         # DELETE /api/v1/users/1/followers/2 or /api/v1/users/1/followers/2.json
         def destroy
           @follower.destroy

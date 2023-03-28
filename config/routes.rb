@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: %i[index create show update destroy] do
         scope module: :users do
-          resources :followers, only: %i[index create show update destroy]
+          resources :followers, only: %i[index create show destroy]
           resources :sleeps, only: %i[index create show update destroy]
         end
       end

@@ -41,16 +41,6 @@ module Api
           assert_response :unprocessable_entity
         end
 
-        test 'should update follower' do
-          patch api_v1_user_follower_url(@user, @follower), params: { follower_id: users(:two) }, as: :json
-          assert_response :success
-        end
-
-        test 'should not update follower with invalid params' do
-          patch api_v1_user_follower_url(@user, @follower), params: { follower_id: nil }, as: :json
-          assert_response :unprocessable_entity
-        end
-
         test 'should destroy follower' do
           assert_difference('Follower.count', -1) do
             delete api_v1_user_follower_url(@user, @follower), as: :json
